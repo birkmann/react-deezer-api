@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Person from "./Person/person.js";
 
-function App() {
+const App = props => {
+  const [personsState, setPersonsState] = useState({
+    persons: [
+      { name: "Max", age: 28 },
+      { name: "Moritz", age: 24 },
+      { name: "Stephanie", age: 26 }
+    ]
+  });
+
+  const [otherState] = useState("some other value");
+
+  console.log(personsState, otherState);
+
+  const switchNameHandler = () => {
+    //console.log("Was clicked");
+    // DON'T DO THIS: personsState.persons[0].name = "Maximilian";
+    setPersonsState({
+      persons: [
+        { name: "Maximilian", age: Math.round(Math.random() * 30) },
+        { name: "Moritz", age: 24 },
+        { name: "Stephanie", age: 27 }
+      ]
+    });
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={switchNameHandler}>Switch Name</button>
+      <Person
+        name={personsState.persons[0].name}
+        age={personsState.persons[0].age}
+      />
+      <Person
+        name={personsState.persons[1].name}
+        age={personsState.persons[1].age}
+      />
+      <Person
+        name={personsState.persons[2].name}
+        age={personsState.persons[2].age}
+      />
     </div>
   );
-}
+};
 
 export default App;
