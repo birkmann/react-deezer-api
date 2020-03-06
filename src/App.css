@@ -115,4 +115,5 @@ form button:hover {
 
 .results li .preview audio {
   outline: 0 none;
+  width: 100%;
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import ReactPlayer from "react-player";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -69,12 +68,9 @@ class App extends React.Component {
                     </div>
                   </div>
                   <div className="preview">
-                    <ReactPlayer
-                      url={music.preview}
-                      controls
-                      width="100%"
-                      height="50px"
-                    />
+                    <audio controls>
+                      <source src={music.preview} type="audio/mpeg" />
+                    </audio>
                   </div>
                 </div>
               </li>
