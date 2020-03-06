@@ -1,49 +1,43 @@
-import React, { useState } from "react";
+import React from "react";
+import axios from "axios";
 import "./App.css";
-import Person from "./Person/person.js";
 
-const App = props => {
-  const [personsState, setPersonsState] = useState({
-    persons: [
-      { name: "Max", age: 28 },
-      { name: "Moritz", age: 24 },
-      { name: "Stephanie", age: 26 }
-    ]
-  });
-
-  const [otherState] = useState("some other value");
-
-  console.log(personsState, otherState);
-
-  const switchNameHandler = () => {
-    //console.log("Was clicked");
-    // DON'T DO THIS: personsState.persons[0].name = "Maximilian";
-    setPersonsState({
-      persons: [
-        { name: "Maximilian", age: Math.round(Math.random() * 30) },
-        { name: "Moritz", age: 24 },
-        { name: "Stephanie", age: 27 }
-      ]
-    });
+class App extends React.Component {
+  state = {
+    music: []
   };
 
-  return (
-    <div className="App">
-      <button onClick={switchNameHandler}>Switch Name</button>
-      <Person
-        name={personsState.persons[0].name}
-        age={personsState.persons[0].age}
-      />
-      <Person
-        name={personsState.persons[1].name}
-        age={personsState.persons[1].age}
-      />
-      <Person
-        name={personsState.persons[2].name}
-        age={personsState.persons[2].age}
-      />
-    </div>
-  );
-};
+  componentDidMount() {
+    let URL = "https://deezerdevs-deezer.p.rapidapi.com/search?q=the+doors";
+    axios
+      .get(URL, {
+        params: {},
+        headers: {
+          "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+          "x-rapidapi-key": "11ac06fc98msh86af0af3fa4e186p103fc8jsne419fad287e9"
+        }
+      })
+      .then(res => {
+        const music = res.data.data;
+        this.setState({ music });
+        console.log(music);
+      });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <ul>
+          {this.state.music.map((music, index) => (
+            <li key={index}>
+              <img src={music.album.cover_big} alt="cover" />
+              <h2>{music.title}</h2>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+}
 
 export default App;
