@@ -45,7 +45,9 @@ class App extends React.Component {
       <div>
         <div className="emotion"></div>
         <div className="container">
-          <img src={logo} alt="Logo" className="logo" />
+          <a href="/" className="logo">
+            <img src={logo} alt="Logo" />
+          </a>
           <form onSubmit={this.handleSubmit}>
             <input type="text" placeholder="Song, Artist, Album" name="query" />
           </form>
