@@ -2,13 +2,7 @@ import React from "react";
 
 function PlayButton(props) {
   const className = props.isMusicPlaying ? "play active" : "play";
-  return (
-    <span
-      onClick={props.onClick}
-      title="Play video"
-      className={className}
-    ></span>
-  );
+  return <span onClick={props.onClick} className={className}></span>;
 }
 
 class Audio extends React.Component {
@@ -18,15 +12,8 @@ class Audio extends React.Component {
   }
   handleClick() {
     if (this.state.isMusicPlaying) {
-      //this.audio.pause();
-      //console.log(this.props.preview);
-      console.log(this);
       this.myAudio.pause();
     } else {
-      //this.audio.play();
-      //console.log(this.props.preview);
-      //this.props.preview.play();
-      console.log(this);
       this.myAudio.play();
     }
     this.setState(prevState => {

@@ -4,17 +4,17 @@ import logo from "./logo.svg";
 import "./App.css";
 import Audio from "./components/audio.js";
 
+const initialState = { music: [] };
+
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      music: []
-    };
+    this.state = initialState;
   }
 
   handleSubmit = e => {
     e.preventDefault();
-
+    this.setState(initialState);
     let URL =
       "https://deezerdevs-deezer.p.rapidapi.com/search?q=" +
       e.target.elements.query.value;
