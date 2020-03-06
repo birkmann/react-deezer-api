@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
-import Audio from "./components/audio.js";
 
 const initialState = { music: [] };
 
@@ -27,7 +26,7 @@ class App extends React.Component {
         }
       })
       .then(res => {
-        //console.log(res.data.data);
+        console.log(res.data.data);
         const music = res.data.data;
         this.setState({ music });
       });
@@ -62,11 +61,7 @@ class App extends React.Component {
                       {music.album.title}
                     </div>
                     <div className="preview">
-                      <Audio
-                        src={music.preview}
-                        itemid={music.id}
-                        preview={music.preview}
-                      />
+                      <code>{music.preview}</code>
                     </div>
                   </div>
                 </div>
@@ -80,3 +75,7 @@ class App extends React.Component {
 }
 
 export default App;
+
+/*
+  <Audio src={music.preview} itemid={music.id} preview={music.preview} />
+*/
