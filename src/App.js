@@ -15,13 +15,6 @@ class App extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    var audios = document.getElementsByTagName("audio");
-    for (var i = 0, len = audios.length; i < len; i++) {
-      if (audios[i] != e.target) {
-        audios[i].pause();
-      }
-    }
-
     let URL =
       "https://deezerdevs-deezer.p.rapidapi.com/search?q=" +
       e.target.elements.query.value;

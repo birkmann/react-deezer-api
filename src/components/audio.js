@@ -1,26 +1,44 @@
 import React from "react";
-import ReactDOM from "react-dom";
+
+function PlayButton(props) {
+  const className = props.isMusicPlaying ? "play active" : "play";
+  return (
+    <span
+      onClick={props.onClick}
+      title="Play video"
+      className={className}
+    ></span>
+  );
+}
 
 class Audio extends React.Component {
-  handleClick = e => {
-    //console.log(this.props.src);
-    let audioHtml = `
-        <audio controls>
-            <source src=${this.props.preview} type="audio/mpeg" />
-        </audio>`;
-    let itemClass = "item-" + this.props.itemid;
-    console.log(itemClass);
-
-    //document.getElementsByClassName(itemClass).innerHTML = "text";
-
-    ReactDOM.findDOMNode(this).innerHTML = audioHtml;
-  };
+  constructor(props) {
+    super(props);
+    this.state = { isMusicPlaying: false };
+  }
+  handleClick() {
+    if (this.state.isMusicPlaying) {
+      //this.audio.pause();
+    } else {
+      //this.audio.play();
+    }
+    this.setState(prevState => {
+      return {
+        isMusicPlaying: !prevState.isMusicPlaying
+      };
+    });
+  }
 
   render() {
+    // const status = this.state.isMusicPlaying ? "Playing" : "Not playing :(";
     return (
       <div>
-        <div className={"item-" + this.props.itemid}></div>
-        <button onClick={this.handleClick}>Play</button>
+        <PlayButton
+          onClick={this.handleClick.bind(this)}
+          isMusicPlaying={this.state.isMusicPlaying}
+        />
+        <p>{this.props.preview}</p>
+        <audio id="audio" src={this.props.preview} />
       </div>
     );
   }
