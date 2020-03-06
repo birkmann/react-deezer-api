@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
+import Audio from "./components/audio.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +14,13 @@ class App extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
+    var audios = document.getElementsByTagName("audio");
+    for (var i = 0, len = audios.length; i < len; i++) {
+      if (audios[i] != e.target) {
+        audios[i].pause();
+      }
+    }
 
     let URL =
       "https://deezerdevs-deezer.p.rapidapi.com/search?q=" +
@@ -48,14 +56,23 @@ class App extends React.Component {
                   <img src={music.album.cover_big} alt="cover" />
                 </div>
                 <div className="right">
-                  <div className="title">{music.title_short}</div>
-                  <div className="artist">
-                    <span>Artist: </span>
-                    {music.artist.name}
-                  </div>
-                  <div className="album">
-                    <span>Album: </span>
-                    {music.album.title}
+                  <div className="details">
+                    <div className="title">{music.title_short}</div>
+                    <div className="artist">
+                      <span>Artist: </span>
+                      {music.artist.name}
+                    </div>
+                    <div className="album">
+                      <span>Album: </span>
+                      {music.album.title}
+                    </div>
+                    <div className="preview">
+                      <Audio
+                        src={music.preview}
+                        itemid={music.id}
+                        preview={music.preview}
+                      />
+                    </div>
                   </div>
                 </div>
               </li>
