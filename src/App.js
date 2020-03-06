@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import ReactPlayer from "react-player";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -60,9 +61,14 @@ class App extends React.Component {
                       <span>Album: </span>
                       {music.album.title}
                     </div>
-                    <div className="preview">
-                      <code>{music.preview}</code>
-                    </div>
+                  </div>
+                  <div className="preview">
+                    <ReactPlayer
+                      url={music.preview}
+                      controls
+                      width="100%"
+                      height="50px"
+                    />
                   </div>
                 </div>
               </li>
@@ -75,7 +81,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-/*
-  <Audio src={music.preview} itemid={music.id} preview={music.preview} />
-*/
