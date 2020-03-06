@@ -40,11 +40,16 @@ form input[type="text"] {
 form button {
   flex: 0 0 150px;
   border: 0 none;
-  background: #000;
+  background: #3b78e7;
   color: #fff;
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+form button:hover {
+  background: #376ed1;
 }
 
 .results {
