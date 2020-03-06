@@ -42,7 +42,13 @@ class App extends React.Component {
             <img src={logo} alt="Logo" />
           </a>
           <form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="Song, Artist, Album" name="query" />
+            <input
+              type="text"
+              placeholder="Song, Artist, Album"
+              name="query"
+              required
+            />
+            <button>Search</button>
           </form>
           <ul className="results">
             {this.state.music.map((music, index) => (
