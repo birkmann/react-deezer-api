@@ -19,8 +19,15 @@ class Audio extends React.Component {
   handleClick() {
     if (this.state.isMusicPlaying) {
       //this.audio.pause();
+      //console.log(this.props.preview);
+      console.log(this);
+      this.myAudio.pause();
     } else {
       //this.audio.play();
+      //console.log(this.props.preview);
+      //this.props.preview.play();
+      console.log(this);
+      this.myAudio.play();
     }
     this.setState(prevState => {
       return {
@@ -37,8 +44,13 @@ class Audio extends React.Component {
           onClick={this.handleClick.bind(this)}
           isMusicPlaying={this.state.isMusicPlaying}
         />
-        <p>{this.props.preview}</p>
-        <audio id="audio" src={this.props.preview} />
+        <audio
+          ref={audio => {
+            this.myAudio = audio;
+          }}
+        >
+          <source src={this.props.preview} type="audio/mpeg" />
+        </audio>
       </div>
     );
   }

@@ -27,7 +27,7 @@ class App extends React.Component {
         }
       })
       .then(res => {
-        console.log(res.data.data);
+        //console.log(res.data.data);
         const music = res.data.data;
         this.setState({ music });
       });
