@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import logo from "./logo.svg";
+import logo from "./img/logo.svg";
+import searchicon from "./img/search.svg";
 import "./App.css";
 
 const initialState = { music: [] };
@@ -32,6 +33,25 @@ class App extends React.Component {
       });
   };
 
+  handleKeyPress = event => {
+    this.setState(initialState);
+    let URL =
+      "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + event.target.value;
+    axios
+      .get(URL, {
+        params: {},
+        headers: {
+          "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+          "x-rapidapi-key": "11ac06fc98msh86af0af3fa4e186p103fc8jsne419fad287e9"
+        }
+      })
+      .then(res => {
+        console.log(res.data.data);
+        const music = res.data.data;
+        this.setState({ music });
+      });
+  };
+
   render() {
     return (
       <div>
@@ -46,8 +66,8 @@ class App extends React.Component {
               placeholder="Song, Artist, Album"
               name="query"
               required
+              //onChange={this.handleKeyPress}
             />
-            <button>Search</button>
           </form>
           <ul className="results">
             {this.state.music.map((music, index) => (
