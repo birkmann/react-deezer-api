@@ -46,6 +46,7 @@ class App extends React.Component {
         }
       })
       .then(res => {
+        this.setState(initialState);
         console.log(res.data.data);
         const music = res.data.data;
         this.setState({ music });
@@ -66,7 +67,7 @@ class App extends React.Component {
               placeholder="Song, Artist, Album"
               name="query"
               required
-              //onChange={this.handleKeyPress}
+              onChange={this.handleKeyPress}
             />
           </form>
           <ul className="results">
