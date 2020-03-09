@@ -14,23 +14,6 @@ class App extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.setState(initialState);
-    let URL =
-      "https://deezerdevs-deezer.p.rapidapi.com/search?q=" +
-      e.target.elements.query.value;
-    axios
-      .get(URL, {
-        params: {},
-        headers: {
-          "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
-          "x-rapidapi-key": "11ac06fc98msh86af0af3fa4e186p103fc8jsne419fad287e9"
-        }
-      })
-      .then(res => {
-        console.log(res.data.data);
-        const music = res.data.data;
-        this.setState({ music });
-      });
   };
 
   handleKeyPress = event => {
